@@ -38,6 +38,27 @@ struct AppIconBadge: View {
                 startPoint: .top,
                 endPoint: .bottom
             ))
+        case .camera:
+            return AnyShapeStyle(LinearGradient(
+                colors: [Color(white: 0.60), Color(white: 0.37)],
+                startPoint: .top,
+                endPoint: .bottom
+            ))
+        case .music:
+            return AnyShapeStyle(LinearGradient(
+                colors: [
+                    Color(red: 1.0, green: 0.27, blue: 0.36),
+                    Color(red: 0.77, green: 0.08, blue: 0.25)
+                ],
+                startPoint: .top,
+                endPoint: .bottom
+            ))
+        case .system:
+            return AnyShapeStyle(LinearGradient(
+                colors: [Color(white: 0.46), Color(white: 0.28)],
+                startPoint: .top,
+                endPoint: .bottom
+            ))
         }
     }
 
@@ -69,6 +90,18 @@ struct AppIconBadge: View {
             Image(systemName: "bubble.left.and.bubble.right.fill")
                 .font(.system(size: 16, weight: .medium))
                 .foregroundStyle(.white)
+        case .camera:
+            Image(systemName: "camera.fill")
+                .font(.system(size: 17, weight: .medium))
+                .foregroundStyle(.white)
+        case .music:
+            Image(systemName: "music.note")
+                .font(.system(size: 18, weight: .semibold))
+                .foregroundStyle(.white)
+        case .system:
+            Image(systemName: "gearshape.fill")
+                .font(.system(size: 17, weight: .medium))
+                .foregroundStyle(.white)
         }
     }
 }
@@ -80,6 +113,9 @@ struct AppIconBadge: View {
             AppIconBadge(kind: .douyin)
             AppIconBadge(kind: .hotspot)
             AppIconBadge(kind: .wechat)
+            AppIconBadge(kind: .camera)
+            AppIconBadge(kind: .music)
+            AppIconBadge(kind: .system)
         }
     }
 }

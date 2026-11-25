@@ -35,18 +35,18 @@ struct UsageCard: View {
                 .padding(.top, 16)
                 .padding(.bottom, 6)
 
-            ForEach(snapshot.activities) { activity in
+            ForEach(topActivities) { activity in
                 AppActivityRow(activity: activity)
 
-                if activity.id != snapshot.activities.last?.id {
+                if activity.id != topActivities.last?.id {
                     Hairline(leadingInset: 66)
                 }
             }
 
             Hairline()
 
-            Button {
-                // 演示工程：真实 App 里在这里跳转到完整的用量列表
+            NavigationLink {
+                BatteryUsageDetailView(snapshot: snapshot)
             } label: {
                 HStack {
                     Text("查看所有电池用量")
@@ -66,6 +66,10 @@ struct UsageCard: View {
             .buttonStyle(.plain)
         }
         .background(Theme.card, in: RoundedRectangle(cornerRadius: Theme.cardRadius, style: .continuous))
+    }
+
+    private var topActivities: [BatteryAppActivity] {
+        Array(snapshot.activities.prefix(3))
     }
 
     private var summary: Text {
@@ -132,10 +136,12 @@ struct UsageCard: View {
 }
 
 #Preview {
-    ZStack {
-        Color.black.ignoresSafeArea()
-        ScrollView {
-            UsageCard(snapshot: .sample).padding(16)
+    NavigationStack {
+        ZStack {
+            Color.black.ignoresSafeArea()
+            ScrollView {
+                UsageCard(snapshot: .sample).padding(16)
+            }
         }
     }
 }

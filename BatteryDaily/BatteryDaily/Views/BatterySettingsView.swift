@@ -6,56 +6,35 @@ struct BatterySettingsView: View {
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        ZStack {
-            Theme.background.ignoresSafeArea()
+        NavigationStack {
+            ZStack {
+                Theme.background.ignoresSafeArea()
 
-            VStack(spacing: 0) {
-                navigationBar
+                VStack(spacing: 0) {
+                    ScreenHeader(title: "电池") {
+                        dismiss()
+                    }
 
-                ScrollView(.vertical) {
-                    VStack(spacing: 0) {
-                        BrightnessWarningCard()
-                            .padding(.horizontal, 16)
-                            .padding(.top, 8)
+                    ScrollView(.vertical) {
+                        VStack(spacing: 0) {
+                            BrightnessWarningCard()
+                                .padding(.horizontal, 16)
+                                .padding(.top, 8)
 
-                        sectionHeader("每日用量")
-                            .padding(.top, 26)
+                            sectionHeader("每日用量")
+                                .padding(.top, 26)
 
-                        UsageCard(snapshot: snapshot)
-                            .padding(.horizontal, 16)
-                            .padding(.top, 8)
+                            UsageCard(snapshot: snapshot)
+                                .padding(.horizontal, 16)
+                                .padding(.top, 8)
 
-                        Color.clear.frame(height: 32)
+                            Color.clear.frame(height: 32)
+                        }
                     }
                 }
             }
+            .toolbar(.hidden, for: .navigationBar)
         }
-    }
-
-    private var navigationBar: some View {
-        ZStack {
-            Text("电池")
-                .font(.system(size: 18, weight: .semibold))
-                .foregroundStyle(Theme.textPrimary)
-
-            HStack {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .font(.system(size: 15, weight: .semibold))
-                        .foregroundStyle(Theme.textPrimary)
-                        .frame(width: 34, height: 34)
-                        .background(Theme.backButtonFill, in: Circle())
-                }
-                .buttonStyle(.plain)
-                .accessibilityLabel("返回")
-
-                Spacer()
-            }
-        }
-        .padding(.horizontal, 16)
-        .frame(height: 52)
     }
 
     private func sectionHeader(_ title: String) -> some View {

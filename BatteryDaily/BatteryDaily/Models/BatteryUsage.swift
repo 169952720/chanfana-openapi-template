@@ -14,6 +14,9 @@ struct BatteryAppActivity: Identifiable {
         case douyin
         case hotspot
         case wechat
+        case camera
+        case music
+        case system
     }
 
     let id = UUID()
@@ -74,7 +77,10 @@ struct BatteryUsageSnapshot {
         activities: [
             BatteryAppActivity(name: "抖音", icon: .douyin, foregroundMinutes: 198, backgroundMinutes: 7, percent: 82),
             BatteryAppActivity(name: "个人热点", icon: .hotspot, foregroundMinutes: nil, backgroundMinutes: nil, percent: 14),
-            BatteryAppActivity(name: "微信", icon: .wechat, foregroundMinutes: 34, backgroundMinutes: 21, percent: 13)
+            BatteryAppActivity(name: "微信", icon: .wechat, foregroundMinutes: 34, backgroundMinutes: 21, percent: 13),
+            BatteryAppActivity(name: "相机", icon: .camera, foregroundMinutes: 12, backgroundMinutes: nil, percent: 4),
+            BatteryAppActivity(name: "音乐", icon: .music, foregroundMinutes: 8, backgroundMinutes: nil, percent: 3),
+            BatteryAppActivity(name: "系统服务", icon: .system, foregroundMinutes: nil, backgroundMinutes: 112, percent: 9)
         ]
     )
 }

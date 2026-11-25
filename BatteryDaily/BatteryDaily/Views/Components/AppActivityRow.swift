@@ -2,6 +2,7 @@ import SwiftUI
 
 struct AppActivityRow: View {
     let activity: BatteryAppActivity
+    var showsChevron: Bool = true
 
     var body: some View {
         HStack(spacing: 12) {
@@ -26,9 +27,11 @@ struct AppActivityRow: View {
                 .monospacedDigit()
                 .foregroundStyle(Theme.textPrimary)
 
-            Image(systemName: "chevron.right")
-                .font(.system(size: 13, weight: .semibold))
-                .foregroundStyle(Theme.textTertiary)
+            if showsChevron {
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundStyle(Theme.textTertiary)
+            }
         }
         .padding(.leading, 16)
         .padding(.trailing, 14)
